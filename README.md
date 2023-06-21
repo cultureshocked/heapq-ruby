@@ -6,7 +6,19 @@ This repository is for my personal implementation for this algorithm for use in 
 
 ## Installing
 
-Just download the `heapq.rb` file and `require` it wherever you would like to use it.
+Just download the `heapq.rb` file and `require` it wherever you would like to use it. No additional dependencies.
+
+## Testing
+
+```bash
+gem install rspec
+git clone https://github.com/cultureshocked/heapq-ruby
+cd heapq-ruby
+rspec
+
+```
+
+See `spec/heapq_spec.rb` for the unit tests.
 
 ## License
 
