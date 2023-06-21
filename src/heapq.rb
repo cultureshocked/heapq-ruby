@@ -26,6 +26,14 @@ module PriorityQueue
     2 * n + 2
   end
 
+  def bubble(arr, idx)
+
+  end
+
+  def sink(arr, idx)
+
+  end
+
   def place(arr, idx)
 
   end
