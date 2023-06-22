@@ -9,7 +9,13 @@ module PriorityQueue
   end
 
   def enqueue(arr, n)
-
+    return nil if arr.class.name != "Array"
+    idx = arr.index n
+    unless idx
+      arr << n
+      return bubble(arr, arr.length - 1)
+    end
+    idx
   end
 
   def is_valid?(arr)
