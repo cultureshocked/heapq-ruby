@@ -44,20 +44,62 @@ class Array
     children.select { |child| child < self.length }
   end
 
-  def heapq_bubble_min(idx)
-
+  def heapq_min_bubble(idx)
+    return nil unless idx.between?(0, self.length - 1)
+    return 0 if idx == 0
+    parent = heapq_get_parent idx
+    return idx if self[parent] < self[idx]
+    self[parent], self[idx] = self[idx], self[parent]
+    heapq_min_bubble parent
   end
 
-  def heapq_sink_min(idx)
+  def heapq_min_sink(idx)
+    return nil unless idx.between?(0, self.length - 1)
+    children = heapq_get_children idx
+    return idx if children.length == 0
 
+    #one child to sink
+    if children.length == 1
+      child = children[0]
+      return idx if self[child] > self[idx]
+      self[child], self[idx] = self[idx], self[child]
+      return heapq_min_sink child
+    end
+
+    #two children
+    child = heapq_smaller_child children
+    return idx if self[child] > self[idx]
+    self[child], self[idx] = self[idx], self[child]
+    heapq_min_sink child
   end
 
-  def heapq_bubble_max(idx)
-
+  def heapq_max_bubble(idx)
+    return nil unless idx.between?(0, self.length - 1)
+    return 0 if idx == 0
+    parent = heapq_get_parent idx
+    return idx if self[parent] > self[idx]
+    self[parent], self[idx] = self[idx], self[parent]
+    heapq_max_bubble parent
   end
 
-  def heapq_sink_max(idx)
+  def heapq_max_sink(idx)
+    return nil unless idx.between?(0, self.length - 1)
+    children = heapq_get_children idx
+    return idx if children.length == 0
 
+    #one child to sink
+    if children.length == 1
+      child = children[0]
+      return idx if self[child] < self[idx]
+      self[child], self[idx] = self[idx], self[child]
+      return heapq_max_sink child
+    end
+
+    #two children
+    child = heapq_larger_child children
+    return idx if self[child] < self[idx]
+    self[child], self[idx] = self[idx], self[child]
+    heapq_max_sink child
   end
 
   def heapq_smaller_child(arr)
