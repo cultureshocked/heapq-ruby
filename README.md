@@ -6,7 +6,7 @@ This repository is for my personal implementation for this algorithm for use in 
 
 ## Installing
 
-Just download the `heapq.rb` file and `require` it wherever you would like to use it. No additional dependencies.
+Just download the `heapq.rb` file, `require` it, and `include PriorityQueue` wherever you would like to use it. No additional dependencies.
 
 ## Testing
 
