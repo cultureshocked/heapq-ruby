@@ -41,23 +41,23 @@ class Array
 
   end
 
-  def bubble_min(idx)
+  def heapq_bubble_min(idx)
 
   end
 
-  def sink_min(idx)
+  def heapq_sink_min(idx)
 
   end
 
-  def bubble_max(idx)
+  def heapq_bubble_max(idx)
 
   end
 
-  def sink_max(idx)
+  def heapq_sink_max(idx)
 
   end
 
-  def smaller_child(arr)
+  def heapq_smaller_child(arr)
 
   end
 end
