@@ -84,3 +84,46 @@ describe "peek" do
     end
   end
 end
+
+describe "bubble" do
+  context "with valid input:" do
+    it "should bubble-up a number if it is smaller than its parent" do
+      minheap = [0, 1, 5, 3, 4, 2, 6]
+      expect(bubble minheap ).to eql(2)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5])
+    end
+    it "should do nothing if the number is at the top of the minheap" do
+      minheap = [1]
+      expect(bubble minheap 0).to eql(1)
+      expect(minheap).to eql([1])
+    end
+    it "should bubble all the way to index 0" do
+      minheap = [1, 2, 3, 4, 5, 0, 7]
+      expect(bubble minheap 5).to eql(0)
+      expect(minheap).to eql([0, 2, 1, 4, 5, 3, 7])
+    end
+  end
+
+  context "with invalid input:" do
+    it "should do nothing + return nil for non-array classes" do
+      minheap = "hi"
+      expect(bubble minheap, 3).to eql(nil)
+      expect(minheap).to eql("hi")
+    end
+    it "should do nothing + return nil for empty heaps" do
+      minheap = []
+      expect(bubble [], 3).to eql(nil)
+      expect(minheap).to eql([])
+    end
+    it "should do nothing + return nil for a negative index" do
+      minheap = [0, 1, 5, 3, 4, 2, 6]
+      expect(bubble minheap, -1).to eql(nil)
+      expect(minheap).to eql([0, 1, 5, 3, 4, 2, 6])
+    end
+    it "should do nothing + return nil for out-of-bounds index" do
+      minheap = [0, 1, 5, 3, 4, 2, 6]
+      expect(bubble minheap, 8).to eql(nil)
+      expect(minheap).to eql([0, 1, 5, 3, 4, 2, 6])
+    end
+  end
+end
