@@ -56,4 +56,8 @@ class Array
   def sink_max(idx)
 
   end
+
+  def smaller_child(arr)
+
+  end
 end
