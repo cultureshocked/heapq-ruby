@@ -11,6 +11,10 @@ class Array
 
   end
 
+  def heapq_min_update(old_val, new_val)
+
+  end
+
   def heapq_max_heapify()
 
   end
@@ -20,10 +24,6 @@ class Array
   end
 
   def heapq_max_deque()
-
-  end
-
-  def heapq_min_update(old_val, new_val)
 
   end
 
