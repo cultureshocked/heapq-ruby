@@ -5,7 +5,15 @@ module PriorityQueue
   end
 
   def deque(arr)
-
+    return nil if arr.class.name != "Array" or arr.length == 0
+    tmp = arr[0]
+    if arr.length == 1
+      arr.pop
+      return tmp
+    end
+    arr[0] = arr.pop
+    sink arr, 0
+    return tmp
   end
 
   def enqueue(arr, n)
