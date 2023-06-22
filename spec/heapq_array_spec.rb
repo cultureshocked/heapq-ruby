@@ -178,7 +178,7 @@ describe "Array::heapq::private =>" do
     it "#heapq_max_sink(): does nothing if the value has no children + returns index" do
       arr = [6, 5, 4, 3, 2, 1, 0]
       expect(arr.heapq_max_sink 5).to eql(5)
-      expect(arr).to eql(5)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
     end
     it "#heapq_max_sink(): returns nil if the index is out of bounds/negative" do
       arr = [0]
