@@ -174,3 +174,31 @@ describe "sink" do
     end
   end
 end
+
+describe "is_valid?" do
+  context "with valid input:" do
+    it "returns true for a valid minheap" do
+      minheap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+      expect(is_valid? minheap).to eql(true)
+    end
+    it "returns false for an invalid minheap" do
+      minheap = [0, 1, 2, 3, 4, 20, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+      expect(is_valid? minheap).to eql(false)
+    end
+    it "returns true for a minheap of one item" do
+      minheap = [0]
+      expect(is_valid? minheap).to eql(true)
+    end
+    it "returns true for an empty minheap" do
+      minheap = []
+      expect(is_valid? minheap).to eql(true)
+    end
+  end
+
+  context "with invalid input:" do
+    it "returns false if argument is not an array" do
+      minheap = "hi"
+      expect(is_valid? minheap).to eql(false)
+    end
+  end
+end
