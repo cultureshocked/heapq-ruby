@@ -189,12 +189,61 @@ describe "Array::heapq::private =>" do
   end
 end
 
-describe "Array::heapq::public" do
-  context "Min-heap:" do
+describe "Array::heapq::public =>" do
+  context "Min-heap =>" do
+    #ENQUEUE
+    it "#heapq_min_enqueue(): enqueue's an object at the end of the array + returns its index" do
+
+    end
+    it "#heapq_min_enqueue(): enqueue's an object and places it in the heap + returns its index" do
+
+    end
+    it "#heapq_min_enqueue(): does nothing if the value is already in the heap + returns existing index" do
+
+    end
+    it "#heapq_min_enqueue(): places the object at the top of the heap if it is the smallest" do
+
+    end
+    it "#heapq_min_enqueue(): does nothing if the object is nil + returns nil" do
+
+    end
+
+    #DEQUE
+    it "#heapq_min_deque(): deletes/returns the smallest object in the heap + heapifies" do
+
+    end
+    it "#heapq_min_deque(): deletes/returns the only object in the heap is size == 1" do
+
+    end
+    it "#heapq_min_deque(): returns nil if the heap is empty" do
+
+    end
+
+    #HEAPIFY (SAFE)
+    it "#heapq_min_heapify(): returns a new heap from a regular array" do
+
+    end
+    it "#heapq_min_heapify(): returns an empty array if the source array is empty" do
+
+    end
+
+    #HEAPIFY (UNSAFE)
+    it "#heapq_min_heapify!(): turns the source array into a min-heap in-place + returns itself" do
+
+    end
+    it "#heapq_min_heapify()!: does nothing on an empty array"
+  end
+
+  context "Max-heap =>" do
 
   end
 
-  context "Max-heap:" do
+  context "General =>" do
+    it "#heapq_peek(): returns the top-most item in the heap without deleting it" do
 
+    end
+    it "#heapq_peek(): returns nil if the heap is empty" do
+
+    end
   end
 end

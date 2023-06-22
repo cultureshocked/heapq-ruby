@@ -3,6 +3,10 @@ class Array
 
   end
 
+  def heapq_min_heapify!()
+
+  end
+
   def heapq_min_enqueue(n)
 
   end
@@ -16,6 +20,10 @@ class Array
   end
 
   def heapq_max_heapify()
+
+  end
+
+  def heapq_max_heapify!()
 
   end
 
