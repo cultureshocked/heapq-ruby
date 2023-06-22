@@ -31,7 +31,7 @@ class Array
 
   end
 
-  def peek()
+  def heapq_peek()
 
   end
 
