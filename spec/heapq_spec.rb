@@ -240,3 +240,31 @@ describe "enqueue" do
     end
   end
 end
+
+describe "deque" do
+  context "with valid input:" do
+    it "returns the smallest element and heapify's the array with the last element" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(deque minheap).to eql(0)
+      expect(minheap).to eql([1, 3, 2, 6, 4, 5])
+    end
+    it "does nothing and returns nil with an empty heap" do
+      minheap = []
+      expect(deque minheap).to eql(nil)
+      expect(minheap).to eql([])
+    end
+    it "returns the only item in an array of length 1 leaving behind an empty array" do
+      minheap = [1]
+      expect(deque minheap).to eql(1)
+      expect(minheap).to eql([])
+    end
+  end
+
+  context "with invalid input:" do
+    it "returns nil for a non-Array input" do
+      minheap = "hi"
+      expect(deque minheap).to eql(nil)
+      expect(minheap).to eql("hi")
+    end
+  end
+end
