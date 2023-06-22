@@ -89,6 +89,18 @@ module PriorityQueue
   end
 
   def update(arr, old_value, new_value)
+    return nil if arr.class.name != "Array"
+    idx = arr.index old_value
+    new_idx = arr.index new_value
+    return nil unless idx
+    return new_idx if new_idx
 
+    arr[idx] = new_value
+
+    if new_value > old_value #might sink down
+      return sink arr, idx
+    else # might bubble up
+      return bubble arr, idx
+    end
   end
 end
