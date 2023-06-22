@@ -107,12 +107,12 @@ describe "Array::heapq::private =>" do
     #MAX
     it "#heapq_max_bubble(): bubbles up a value to where it belongs + returns new index" do
       arr = [6, 5, 2, 3, 1, 4, 0]
-      expect(arr.heapq_max_bubble 6).to eql(2)
+      expect(arr.heapq_max_bubble 5).to eql(2)
       expect(arr).to eql([6, 5, 4, 3, 1, 2, 0])
     end
     it "#heapq_max_bubble(): bubbles up a value to the top if needed + returns new index" do
       arr = [5, 4, 3, 2, 1, 0, 6]
-      expect(arr.heapq_max_bubble 7).to eql(0)
+      expect(arr.heapq_max_bubble 6).to eql(0)
       expect(arr).to eql([6, 4, 5, 2, 1, 0, 3])
     end
     it "#heapq_max_bubble(): does nothing if the value is where it belongs + returns its index" do
