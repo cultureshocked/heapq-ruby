@@ -13,7 +13,13 @@ module PriorityQueue
   end
 
   def is_valid?(arr)
-
+    return false if arr.class.name != "Array"
+    arr.each.with_index do |n, idx|
+      next if idx == 0 # ignore first element as it has no parent
+      parent_idx = get_parent_idx idx
+      return false if arr[parent_idx] > arr[idx]
+    end
+    true
   end
 
   def get_parent_idx(n)
