@@ -88,7 +88,7 @@ module PriorityQueue
     sink arr, smallest_child
   end
 
-  def place(arr, idx)
+  def update(arr, old_value, new_value)
 
   end
 end
