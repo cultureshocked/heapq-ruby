@@ -202,3 +202,41 @@ describe "is_valid?" do
     end
   end
 end
+
+describe "enqueue" do
+  context "with valid input:" do
+    it "adds the element and places it in the queue + returns its index" do
+      minheap = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+      expect(enqueue minheap, 3).to eql(3)
+      expect(minheap).to eql([0, 1, 2, 3, 5, 6, 7, 8, 4, 10, 11, 12, 13, 14, 15, 16, 17, 9])
+    end
+    it "bubbles up to the top if possible + returns its index" do
+      minheap = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+      expect(enqueue minheap, 0).to eql(0)
+      expect(minheap).to eql([0, 1, 3, 2, 5, 6, 7, 8, 4, 10, 11, 12, 13, 14, 15, 16, 17, 9])
+    end
+    it "appends the element if it is the largest + returns its index" do
+      minheap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      expect(enqueue minheap, 100).to eql(10)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100])
+    end
+    it "adds a single element if there is nothing in the queue + returns its index" do
+      minheap = []
+      expect(enqueue minheap, 5).to eql(0)
+      expect(minheap).to eql([5])
+    end
+    it "does nothing if the element is already in the queue + return its current index" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(enqueue minheap, 3).to eql(3)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+  end
+
+  context "with invalid input:" do
+    it "returns nil if arr is not an Array" do
+      minheap = "hi"
+      expect(enqueue minheap, 3).to eql(nil)
+      expect(minheap).to eql("hi")
+    end
+  end
+end
