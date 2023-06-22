@@ -31,7 +31,7 @@ class Array
 
   end
 
-  private:
+  # private #comment out while running tests
 
   def heapq_get_parent(n)
 
