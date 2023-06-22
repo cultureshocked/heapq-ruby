@@ -14,6 +14,11 @@ describe "Array::heapq::private" do
       expect(arr.heapq_get_parent 0).to eql(nil)
       expect(arr).to eql([])
     end
+    it "#heapq_get_children(): returns nil if the index supplied is negative" do
+      arr = []
+      expect(arr.heapq_get_children -1).to eql(nil)
+      expect(arr).to eql([])
+    end
     it "#heapq_get_children(): returns the indices of children of a value if they are within range" do
       arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
       expect(arr.heapq_get_children 2).to eql([5, 6])
@@ -71,7 +76,57 @@ describe "Array::heapq::private" do
   end
 
   context "Heap actions" do
+    #BUBBLE
+    #MIN
+    it "#heapq_bubble_min(): bubbles up a value to where it belongs + returns new index" do
 
+    end
+    it "#heapq_bubble_min(): bubbles up a value to the top if needed + returns new index" do
+
+    end
+    it "#heapq_bubble_min(): does nothing if the value is where it belongs + returns its index" do
+
+    end
+    it "#heapq_bubble_min(): does nothing if the value is already at the top + returns 0" do
+
+    end
+    it "#heapq_bubble_min(): returns nil if the index is out of bounds/negative" do
+
+    end
+    #MAX
+    it "#heapq_bubble_max(): bubbles up a value to where it belongs + returns new index" do
+
+    end
+    it "#heapq_bubble_max(): bubbles up a value to the top if needed + returns new index" do
+
+    end
+    it "#heapq_bubble_max(): does nothing if the value is where it belongs + returns its index" do
+
+    end
+    it "#heapq_bubble_max(): does nothing if the value is already at the top + returns 0" do
+
+    end
+    it "#heapq_bubble_max(): returns nil if the index is out of bounds" do
+
+    end
+
+    #SINK
+    #MIN
+    it "#heapq_sink_min(): sinks a value down to where it belongs + returns new index" do
+
+    end
+    it "#heapq_sink_min(): sinks a value all the way to the bottom if needed + returns its index" do
+
+    end
+    it "#heapq_sink_min(): does nothing if the value is where it belongs + returns its index" do
+
+    end
+    it "#heapq_sink_min(): does nothing if the value is alread at the top + returns 0" do
+
+    end
+    it "#heapq_sink_min(): returns nil if the index is out of bounds/negative" do
+
+    end
   end
 end
 
