@@ -268,3 +268,36 @@ describe "deque" do
     end
   end
 end
+
+describe "update" do
+  context "with valid input:" do
+    it "updates an existing value and heapify's it + returns new index" do
+      minheap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      expect(update minheap, 0, 12).to eql(7)
+      expect(minheap).to eql([1, 3, 2, 7, 4, 5, 6, 12, 8, 9, 10])
+    end
+    it "updates an existing value and does nothing if not needed + returns index" do
+      minheap = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(update minheap, 4, 3).to eql(2)
+      expect(minheap).to eql([0, 2, 3, 6, 8, 10, 12])
+    end
+    it "does nothing if the new value already exists in the heap + returns its index" do
+      minheap = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(update minheap, 4, 2).to eql(1)
+      expect(minheap).to eql([0, 2, 4, 6, 8, 10, 12])
+    end
+  end
+
+  context "with invalid input:" do
+    it "does nothing + returns nil if the heap is not an Array" do
+      minheap = "hi"
+      expect(update minheap, 1, 2).to eql(nil)
+      expect(minheap).to eql("hi")
+    end
+    it "does nothing + returns nil if the old value does not exist" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(update minheap, 7, 8).to eql(nil)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+  end
+end
