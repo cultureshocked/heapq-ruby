@@ -1,7 +1,7 @@
 require_relative '../src/heapq_array.rb'
 
-describe "Array::heapq::private" do
-  context "Helper methods" do
+describe "Array::heapq::private =>" do
+  context "Helper methods =>" do
     it "#heapq_get_parent(): gets the index of the parent value" do
       arr = []
       expect(arr.heapq_get_parent 5).to eql(2)
@@ -75,57 +75,116 @@ describe "Array::heapq::private" do
     end
   end
 
-  context "Heap actions" do
+  context "Heap actions =>" do
     #BUBBLE
     #MIN
-    it "#heapq_bubble_min(): bubbles up a value to where it belongs + returns new index" do
-
+    it "#heapq_min_bubble(): bubbles up a value to where it belongs + returns new index" do
+      arr = [0, 1, 5, 3, 4, 2, 6]
+      expect(arr.heapq_min_bubble 5).to eql(2)
+      expect(arr).to eql([0, 1, 2, 3, 4, 5, 6])
     end
-    it "#heapq_bubble_min(): bubbles up a value to the top if needed + returns new index" do
-
+    it "#heapq_min_bubble(): bubbles up a value to the top if needed + returns new index" do
+      arr = [1, 2, 3, 4, 5, 0, 7]
+      expect(arr.heapq_min_bubble 5).to eql(0)
+      expect(arr).to eql([0, 2, 1, 4, 5, 3, 7])
     end
-    it "#heapq_bubble_min(): does nothing if the value is where it belongs + returns its index" do
-
+    it "#heapq_min_bubble(): does nothing if the value is where it belongs + returns its index" do
+      arr = [0, 1, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_bubble 2).to eql(2)
+      expect(arr).to eql([0, 1, 2, 3, 4, 5, 6])
     end
-    it "#heapq_bubble_min(): does nothing if the value is already at the top + returns 0" do
-
+    it "#heapq_min_bubble(): does nothing if the value is already at the top + returns 0" do
+      arr = [0]
+      expect(arr.heapq_min_bubble 0).to eql(0)
+      expect(arr).to eql([0])
     end
-    it "#heapq_bubble_min(): returns nil if the index is out of bounds/negative" do
-
+    it "#heapq_min_bubble(): returns nil if the index is out of bounds/negative" do
+      arr = [0]
+      expect(arr.heapq_min_bubble 2).to eql(nil)
+      expect(arr.heapq_min_bubble -1).to eql(nil)
+      expect(arr).to eql([0])
     end
     #MAX
-    it "#heapq_bubble_max(): bubbles up a value to where it belongs + returns new index" do
-
+    it "#heapq_max_bubble(): bubbles up a value to where it belongs + returns new index" do
+      arr = [6, 5, 2, 3, 1, 4, 0]
+      expect(arr.heapq_max_bubble 6).to eql(2)
+      expect(arr).to eql([6, 5, 4, 3, 1, 2, 0])
     end
-    it "#heapq_bubble_max(): bubbles up a value to the top if needed + returns new index" do
-
+    it "#heapq_max_bubble(): bubbles up a value to the top if needed + returns new index" do
+      arr = [5, 4, 3, 2, 1, 0, 6]
+      expect(arr.heapq_max_bubble 7).to eql(0)
+      expect(arr).to eql([6, 4, 5, 2, 1, 0, 3])
     end
-    it "#heapq_bubble_max(): does nothing if the value is where it belongs + returns its index" do
-
+    it "#heapq_max_bubble(): does nothing if the value is where it belongs + returns its index" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_bubble 2).to eql(2)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
     end
-    it "#heapq_bubble_max(): does nothing if the value is already at the top + returns 0" do
-
+    it "#heapq_max_bubble(): does nothing if the value is already at the top + returns 0" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_bubble 0).to eql(0)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
     end
-    it "#heapq_bubble_max(): returns nil if the index is out of bounds" do
-
+    it "#heapq_max_bubble(): returns nil if the index is out of bounds" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_bubble -1).to eql(nil)
+      expect(arr.heapq_max_bubble 10).to eql(nil)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
     end
 
     #SINK
     #MIN
-    it "#heapq_sink_min(): sinks a value down to where it belongs + returns new index" do
-
+    it "#heapq_min_sink(): sinks a value down if it is larger than 1 of its children + returns new index" do
+      arr = [1, 0, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_sink 0).to eql(1)
+      expect(arr).to eql([0, 1, 2, 3, 4, 5, 6])
     end
-    it "#heapq_sink_min(): sinks a value all the way to the bottom if needed + returns its index" do
-
+    it "#heapq_min_sink(): sinks a value down if it is larger than both of its children + returns its index" do
+      arr = [5, 1, 0, 3, 4, 2, 6]
+      expect(arr.heapq_min_sink 0).to eql(5)
+      expect(arr).to eql([0, 1, 2, 3, 4, 5, 6])
     end
-    it "#heapq_sink_min(): does nothing if the value is where it belongs + returns its index" do
-
+    it "#heapq_min_sink(): does nothing if the value is larger than both children + returns its index" do
+      arr = [0, 1, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_sink 2).to eql(2)
+      expect(arr).to eql([0, 1, 2, 3, 4, 5, 6])
     end
-    it "#heapq_sink_min(): does nothing if the value is alread at the top + returns 0" do
-
+    it "#heapq_min_sink(): does nothing if the value has no children + returns index" do
+      arr = [0, 1, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_sink 5).to eql(5)
     end
-    it "#heapq_sink_min(): returns nil if the index is out of bounds/negative" do
-
+    it "#heapq_min_sink(): returns nil if the index is out of bounds/negative" do
+      arr = [0]
+      expect(arr.heapq_min_sink 1).to eql(nil)
+      expect(arr.heapq_min_sink -1).to eql(nil)
+      expect(arr).to eql([0])
+    end
+    #MAX
+    it "#heapq_max_sink(): sinks a value down if it is smaller than one of its children + returns new index" do
+      arr = [5, 6, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_sink 0).to eql(1)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
+    end
+    it "#heapq_max_sink(): sinks a value down if it is smaller than both its children + returns its index" do
+      arr = [0, 6, 5, 4, 3, 2, 1]
+      expect(arr.heapq_max_sink 0).to eql(3)
+      expect(arr).to eql([6, 4, 5, 0, 3, 2, 1])
+    end
+    it "#heapq_max_sink(): does nothing if value is larger than both children + returns its index" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_sink 2).to eql(2)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
+    end
+    it "#heapq_max_sink(): does nothing if the value has no children + returns index" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_sink 5).to eql(5)
+      expect(arr).to eql(5)
+    end
+    it "#heapq_max_sink(): returns nil if the index is out of bounds/negative" do
+      arr = [0]
+      expect(arr.heapq_max_sink 1).to eql(nil)
+      expect(arr.heapq_max_sink -1).to eql(nil)
+      expect(arr).to eql([0])
     end
   end
 end
