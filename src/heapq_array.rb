@@ -31,6 +31,10 @@ class Array
 
   end
 
+  def peek()
+
+  end
+
   # private #comment out while running tests
 
   def heapq_get_parent(n)
