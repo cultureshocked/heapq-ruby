@@ -89,17 +89,17 @@ describe "bubble" do
   context "with valid input:" do
     it "should bubble-up a number if it is smaller than its parent" do
       minheap = [0, 1, 5, 3, 4, 2, 6]
-      expect(bubble minheap ).to eql(2)
-      expect(minheap).to eql([0, 1, 2, 3, 4, 5])
+      expect(bubble minheap, 5).to eql(2)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
     end
     it "should do nothing if the number is at the top of the minheap" do
       minheap = [1]
-      expect(bubble minheap 0).to eql(1)
+      expect(bubble minheap, 0).to eql(0)
       expect(minheap).to eql([1])
     end
     it "should bubble all the way to index 0" do
       minheap = [1, 2, 3, 4, 5, 0, 7]
-      expect(bubble minheap 5).to eql(0)
+      expect(bubble minheap, 5).to eql(0)
       expect(minheap).to eql([0, 2, 1, 4, 5, 3, 7])
     end
   end

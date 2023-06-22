@@ -32,7 +32,15 @@ module PriorityQueue
   end
 
   def bubble(arr, idx)
-
+    return nil if arr.class.name != "Array" or idx.class.name != "Integer"
+    return nil if not (idx.between?(0, arr.length - 1))
+    return 0 if idx == 0
+    parent_idx = get_parent_idx idx
+    if arr[parent_idx] > arr[idx]
+      arr[parent_idx], arr[idx] = arr[idx], arr[parent_idx]
+      return bubble arr, parent_idx
+    end
+    idx
   end
 
   def sink(arr, idx)
