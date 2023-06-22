@@ -127,3 +127,50 @@ describe "bubble" do
     end
   end
 end
+
+describe "sink" do
+  context "with valid input:" do
+    it "sinks a value + returns its new index if it is larger than one of its children" do
+      minheap = [1, 0, 2, 3, 4, 5, 6]
+      expect(sink minheap, 0).to eql(1)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+    it "sinks a value +returns its new index if it is larger than both of its children" do
+      minheap = [5, 1, 0, 3, 4, 2, 6]
+      expect(sink minheap, 0).to eql(5)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+    it "does nothing + returns current index if a value is smaller than its children" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(sink minheap, 2).to eql(2)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+    it "does nothing + returns current index if a value has no children" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(sink minheap, 6).to eql(6)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+  end
+  context "with invalid input:" do
+    it "does nothing + returns nil if the heap is not an array" do
+      minheap = "hi"
+      expect(sink minheap, 0).to eql(nil)
+      expect(minheap).to eql("hi")
+    end
+    it "does nothing + returns nil if the index is out of bounds" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(sink minheap, 9).to eql(nil)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+    it "does nothing + returns nil if the index is not an integer" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(sink minheap, "hi").to eql(nil)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+    it "does nothing + returns nil if the index is negative" do
+      minheap = [0, 1, 2, 3, 4, 5, 6]
+      expect(sink minheap, -1).to eql(nil)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5, 6])
+    end
+  end
+end
