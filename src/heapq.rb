@@ -1,4 +1,9 @@
 module PriorityQueue
+  def peek(arr)
+    return nil if arr.class.name != "Array"
+    arr[0]
+  end
+
   def deque(arr)
 
   end

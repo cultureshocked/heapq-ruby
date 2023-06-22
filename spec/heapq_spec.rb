@@ -60,3 +60,27 @@ describe "get_right_child_idx" do
     end
   end
 end
+
+describe "peek" do
+  context "with valid input:" do
+    it "should return the first element in the array without removing it" do
+      minheap = [0, 1, 2, 3, 4, 5]
+      expect(peek minheap).to eql(0)
+      expect(minheap).to eql([0, 1, 2, 3, 4, 5])
+    end
+    it "should return the element when there is only one element in the minheap" do
+      minheap = [1]
+      expect(peek minheap).to eql(1)
+      expect(minheap).to eql([1])
+    end
+  end
+
+  context "with invalid input:" do
+    it "should return nil for non-array classes" do
+      expect(peek "hi").to eql(nil)
+    end
+    it "should return nil for empty arrays" do
+      expect(peek []).to eql(nil)
+    end
+  end
+end
