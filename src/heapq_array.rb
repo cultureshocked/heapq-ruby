@@ -60,4 +60,7 @@ class Array
   def heapq_smaller_child(arr)
 
   end
+  def heapq_larger_child(arr)
+
+  end
 end
