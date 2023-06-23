@@ -321,8 +321,8 @@ describe "Array::heapq::public =>" do
     end
     it "#heapq_max_enqueue(): enqueue's an object and places it in the heap + returns its index" do
       arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
-      expect(arr.heapq_max_enqueue 9).to eql(4)
-      expect(arr).to eql(12, 10, 8, 9, 4, 2, 0, 6)
+      expect(arr.heapq_max_enqueue 9).to eql(3)
+      expect(arr).to eql([12, 10, 8, 9, 4, 2, 0, 6])
     end
     it "#heapq_max_enqueue(): does nothing if the value is already in the heap + returns its index" do
       arr = [6, 5, 4, 3, 2, 1, 0]

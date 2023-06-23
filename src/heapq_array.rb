@@ -60,15 +60,36 @@ class Array
   end
 
   def heapq_max_enqueue(n)
-
+    return nil if n.nil?
+    idx = self.index n
+    return idx unless idx.nil?
+    self << n
+    heapq_max_bubble self.length - 1
   end
 
   def heapq_max_deque()
-
+    return nil if self.length == 0
+    return self.pop if self.length == 1
+    ret = self[0]
+    tmp = self.pop
+    self[0] = tmp
+    heapq_max_sink 0
+    ret
   end
 
   def heapq_max_update(old_val, new_val)
+    return nil if old_val.nil? or new_val.nil?
+    idx = self.index old_val
+    return nil if idx.nil?
+    new_idx = self.index new_val
+    return new_idx unless new_idx.nil?
 
+    self[idx] = new_val
+    if old_val < new_val
+      return heapq_max_bubble idx
+    else
+      return heapq_max_sink idx
+    end
   end
 
   def heapq_peek()
