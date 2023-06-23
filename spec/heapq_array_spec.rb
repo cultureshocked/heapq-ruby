@@ -251,10 +251,10 @@ describe "Array::heapq::public =>" do
 
     #HEAPIFY (UNSAFE)
     it "#heapq_min_heapify!(): turns the source array into a min-heap in-place + returns itself" do
-    arr = [5, 4, 7, 2, 6, 9, 3]
-    heap = arr.heapq_min_heapify
-    expect(heap.equal? arr).to eql(true)
-    expect(arr).to eql([2, 4, 3, 5, 6, 9, 7])
+      arr = [5, 4, 7, 2, 6, 9, 3]
+      heap = arr.heapq_min_heapify!
+      expect(arr.equal? heap).to eql(true)
+      expect(arr).to eql([2, 4, 3, 5, 6, 9, 7])
     end
     it "#heapq_min_heapify!(): does nothing on an empty array" do
       arr = []

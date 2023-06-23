@@ -1,10 +1,19 @@
 class Array
   def heapq_min_heapify()
-
+    return_array = self.clone
+    for i in 0...return_array.length
+      next if i == 0
+      return_array.heapq_min_bubble i
+    end
+    return_array
   end
 
   def heapq_min_heapify!()
-
+    for i in 0...self.length
+      next if i == 0
+      heapq_min_bubble i
+    end
+    self
   end
 
   def heapq_min_enqueue(n)
