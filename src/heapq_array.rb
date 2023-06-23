@@ -8,11 +8,21 @@ class Array
   end
 
   def heapq_min_enqueue(n)
-
+    return nil if n.nil?
+    idx = self.index n
+    return idx unless idx.nil?
+    self << n
+    heapq_min_bubble self.length - 1
   end
 
   def heapq_min_deque()
-
+    return nil if self.length == 0
+    return self.pop if self.length == 1
+    ret = self[0]
+    tmp = self.pop
+    self[0] = tmp
+    heapq_min_sink 0
+    ret
   end
 
   def heapq_min_update(old_val, new_val)
@@ -40,7 +50,7 @@ class Array
   end
 
   def heapq_peek()
-
+    self[0]
   end
 
   # private #comment out while running tests
