@@ -247,7 +247,9 @@ describe "Array::heapq::public =>" do
     it "#heapq_min_heapify!(): turns the source array into a min-heap in-place + returns itself" do
 
     end
-    it "#heapq_min_heapify()!: does nothing on an empty array"
+    it "#heapq_min_heapify()!: does nothing on an empty array" do
+
+    end
 
     #UPDATE
     it "#heapq_min_update(): updates the existing value and does nothing if it fits + returns its index" do
