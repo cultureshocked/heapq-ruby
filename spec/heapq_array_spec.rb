@@ -232,6 +232,26 @@ describe "Array::heapq::public =>" do
 
     end
     it "#heapq_min_heapify()!: does nothing on an empty array"
+
+    #UPDATE
+    it "#heapq_min_update(): updates the existing value and does nothing if it fits + returns its index" do
+
+    end
+    it "#heapq_min_update(): updates the existing value and sinks it if needed + returns its index" do
+
+    end
+    it "#heapq_min_update(): updates the existing value and bubbles it if needed + returns its index" do
+
+    end
+    it "#heapq_min_update(): returns nil + does nothing if the existing value is not found" do
+
+    end
+    it "#heapq_min_update(): returns the index of the new value if it already exists in the heap" do
+
+    end
+    it "#heapq_min_update(): returns nil if any parameter is nil" do
+
+    end
   end
 
   context "Max-heap =>" do
