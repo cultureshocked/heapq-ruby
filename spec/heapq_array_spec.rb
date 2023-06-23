@@ -193,30 +193,46 @@ describe "Array::heapq::public =>" do
   context "Min-heap =>" do
     #ENQUEUE
     it "#heapq_min_enqueue(): enqueue's an object at the end of the array + returns its index" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_enqueue 7).to eql(7)
+      expect(arr).to eql([0, 1, 2, 3, 4, 5, 6, 7])
     end
     it "#heapq_min_enqueue(): enqueue's an object and places it in the heap + returns its index" do
-
+      arr = [0, 1, 5, 3, 4, 6]
+      expect(arr.heapq_min_enqueue 2).to eql(2)
+      expect(arr).to eql([0, 1, 2, 3, 4, 6, 5])
     end
     it "#heapq_min_enqueue(): does nothing if the value is already in the heap + returns existing index" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(arr.heapq_min_enqueue 8).to eql(4)
+      expect(arr).to eql([0, 2, 4, 6, 8, 10, 12])
     end
     it "#heapq_min_enqueue(): places the object at the top of the heap if it is the smallest" do
-
+      arr = [1, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_enqueue 0).to eql(0)
+      expect(arr).to eql([0, 2, 1, 4, 5, 6, 3])
     end
     it "#heapq_min_enqueue(): does nothing if the object is nil + returns nil" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_enqueue nil).to eql(nil)
+      expect(arr).to eql([0, 1, 2, 3, 4, 5, 6])
     end
 
     #DEQUE
     it "#heapq_min_deque(): deletes/returns the smallest object in the heap + heapifies" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6]
+      expect(arr.heapq_min_deque).to eql(0)
+      expect(arr).to eql([1, 3, 2, 6, 4, 5])
     end
     it "#heapq_min_deque(): deletes/returns the only object in the heap is size == 1" do
-
+      arr = [0]
+      expect(arr.heapq_min_deque).to eql(0)
+      expect(arr).to eql([])
     end
     it "#heapq_min_deque(): returns nil if the heap is empty" do
-
+      arr = []
+      expect(arr.heapq_min_deque).to eql(nil)
+      expect(arr).to eql([])
     end
 
     #HEAPIFY (SAFE)
@@ -260,10 +276,14 @@ describe "Array::heapq::public =>" do
 
   context "General =>" do
     it "#heapq_peek(): returns the top-most item in the heap without deleting it" do
-
+      arr = [0, 1, 2, 3, 4]
+      expect(arr.heapq_peek).to eql(0)
+      expect(arr).to eql([0, 1, 2, 3, 4])
     end
     it "#heapq_peek(): returns nil if the heap is empty" do
-
+      arr = []
+      expect(arr.heapq_peek).to eql(nil)
+      expect(arr).to eql([])
     end
   end
 end
