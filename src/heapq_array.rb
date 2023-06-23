@@ -1,6 +1,6 @@
 class Array
   def heapq_min_heapify()
-    return_array = self.clone
+    return_array = self.uniq
     for i in 0...return_array.length
       next if i == 0
       return_array.heapq_min_bubble i
@@ -9,6 +9,7 @@ class Array
   end
 
   def heapq_min_heapify!()
+    self.uniq!
     for i in 0...self.length
       next if i == 0
       heapq_min_bubble i
