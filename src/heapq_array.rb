@@ -26,7 +26,19 @@ class Array
   end
 
   def heapq_min_update(old_val, new_val)
+    return nil if old_val.nil? or new_val.nil?
+    idx = self.index old_val
+    return nil if idx.nil?
+    new_idx = self.index new_val
+    return new_idx unless new_idx.nil?
 
+    self[idx] = new_val
+
+    if old_val > new_val
+      return heapq_min_bubble idx
+    else
+      return heapq_min_sink idx
+    end
   end
 
   def heapq_max_heapify()
