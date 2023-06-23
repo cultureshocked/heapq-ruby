@@ -247,6 +247,7 @@ describe "Array::heapq::public =>" do
       arr = []
       heap = arr.heapq_min_heapify
       expect(heap).to eql([])
+      expect(arr).to eql([])
       expect(heap.equal? arr).to eql(false)
     end
     it "#heapq_min_heapify(): deletes any duplicates in the array before building the heap" do
@@ -356,9 +357,51 @@ describe "Array::heapq::public =>" do
       expect(arr.heapq_max_deque).to eql(nil)
       expect(arr).to eql([])
     end
-    #HEAPIFY (SAFE)
 
+    #HEAPIFY (SAFE)
+    it "heapq_max_heapify(): returns a new heap from a regular array" do
+      arr = [5, 4, 7, 2, 6, 9, 3]
+      heap = arr.heapq_max_heapify
+      expect(heap.equal? arr).to eql(false)
+      expect(arr).to eql([5, 4, 7, 2, 6, 9, 3])
+      expect(heap).to eql([9, 6, 7, 2, 4, 5, 3])
+    end
+    it "heapq_max_heapify(): returns an empty array if the source array is empty" do
+      arr = []
+      heap = arr.heapq_max_heapify
+      expect(heap).to eql([])
+      expect(arr).to eql([])
+      expect(heap.equal? arr).to eql(false)
+    end
+    it "heapq_max_heapify(): deletes any duplicates in the original array while building heap" do
+      arr = [5, 4, 7, 7, 7, 2, 2, 6, 2, 9, 3]
+      heap = arr.heapq_max_heapify
+      expect(heap.equal? arr).to eql(false)
+      expect(arr).to eql([5, 4, 7, 7, 7, 2, 2, 6, 2, 9, 3])
+      expect(heap).to eql([9, 6, 7, 2, 4, 5, 3])
+    end
     #HEAPIFY (UNSAFE)
+    it "heapq_max_heapify!(): turns the source array into a heap in-place + returns itself" do
+      arr = [5, 4, 7, 2, 6, 9, 3]
+      heap = arr.heapq_max_heapify!
+      expect(heap.equal? arr).to eql(true)
+      expect(arr).to eql([9, 6, 7, 2, 4, 5, 3])
+      expect(heap).to eql([9, 6, 7, 2, 4, 5, 3])
+    end
+    it "heapq_max_heapify!(): does nothing and returns itself is the source array is empty" do
+      arr = []
+      heap = arr.heapq_max_heapify!
+      expect(heap).to eql([])
+      expect(arr).to eql([])
+      expect(arr.equal? heap).to eql(true)
+    end
+    it "heapq_max_heapify!(): deletes any duplicates in the original array while building heap" do
+      arr = [5, 4, 7, 7, 7, 2, 2, 6, 2, 9, 3]
+      heap = arr.heapq_max_heapify!
+      expect(heap.equal? arr).to eql(true)
+      expect(arr).to eql([9, 6, 7, 2, 4, 5, 3])
+      expect(heap).to eql([9, 6, 7, 2, 4, 5, 3])
+    end
 
     #UPDATE
     it "#heapq_max_update(): updates the existing value and does nothing if it fits + returns the index" do
