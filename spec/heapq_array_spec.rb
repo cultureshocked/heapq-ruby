@@ -253,22 +253,36 @@ describe "Array::heapq::public =>" do
 
     #UPDATE
     it "#heapq_min_update(): updates the existing value and does nothing if it fits + returns its index" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(arr.heapq_min_update 4, 3).to eql(2)
+      expect(arr).to eql([0, 2, 3, 6, 8, 10, 12])
     end
     it "#heapq_min_update(): updates the existing value and sinks it if needed + returns its index" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(arr.heapq_min_update 4, 11).to eql(5)
+      expect(arr).to eql([0, 2, 10, 6, 8, 11, 12])
     end
     it "#heapq_min_update(): updates the existing value and bubbles it if needed + returns its index" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(arr.heapq_min_update 4, -1).to eql(0)
+      expect(arr).to eql([0, 2, 4, 6, 8, 10, 12])
     end
     it "#heapq_min_update(): returns nil + does nothing if the existing value is not found" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(arr.heapq_min_update 7, 9).to eql(nil)
+      expect(arr).to eql([0, 2, 4, 6, 8, 10, 12])
     end
     it "#heapq_min_update(): returns the index of the new value if it already exists in the heap" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(arr.heapq_min_update 4, 8).to eql(4)
+      expect(arr).to eql([0, 2, 4, 6, 8, 10, 12])
     end
     it "#heapq_min_update(): returns nil if any parameter is nil" do
-
+      arr = [0, 1, 2, 3, 4, 5, 6].map { |n| n * 2 }
+      expect(arr.heapq_min_update nil, 3).to eql(nil)
+      expect(arr.heapq_min_update 2, nil).to eql(nil)
+      expect(arr.heapq_min_update nil, nil).to eql(nil)
+      expect(arr).to eql([0, 2, 4, 6, 8, 10, 12])
     end
   end
 
