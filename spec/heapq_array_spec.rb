@@ -270,6 +270,12 @@ describe "Array::heapq::public =>" do
       expect(arr.equal? heap).to eql(true)
       expect(heap).to eql([])
     end
+    it "#heapq_min_heapify!(): deletes any duplicates in the array before building the heap" do
+      arr = [5, 4, 7, 7, 7, 2, 2, 6, 2, 9, 3]
+      heap = arr.heapq_min_heapify!
+      expect(heap.equal? arr).to eql(true)
+      expect(heap).to eql([2, 4, 3, 5, 6, 9, 7])
+    end
 
     #UPDATE
     it "#heapq_min_update(): updates the existing value and does nothing if it fits + returns its index" do
