@@ -18,6 +18,8 @@ rspec
 
 ```
 
+Uncomment the `private` access specifier in `src/heapq_array.rb` to ensure that the tests for the private methods don't fail.
+
 See `spec/heapq_spec.rb` for the unit tests.
 
 ## Using this library with custom types
