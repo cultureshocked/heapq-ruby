@@ -241,12 +241,20 @@ describe "Array::heapq::public =>" do
       heap = arr.heapq_min_heapify
       expect(heap.equal? arr).to eql(false)
       expect(arr).to eql([5, 4, 7, 2, 6, 9, 3])
+      expect(heap).to eql([2, 4, 3, 5, 6, 9, 7])
     end
     it "#heapq_min_heapify(): returns an empty array if the source array is empty" do
       arr = []
       heap = arr.heapq_min_heapify
       expect(heap).to eql([])
       expect(heap.equal? arr).to eql(false)
+    end
+    it "#heapq_min_heapify(): deletes any duplicates in the array before building the heap" do
+      arr = [5, 4, 7, 7, 7, 2, 2, 6, 2, 9, 3]
+      heap = arr.heapq_min_heapify
+      expect(heap.equal? arr).to eql(false)
+      expect(arr).to eql([5, 4, 7, 7, 7, 2, 2, 6, 2, 9, 3])
+      expect(heap).to eql([2, 4, 3, 5, 6, 9, 7])
     end
 
     #HEAPIFY (UNSAFE)
@@ -299,7 +307,86 @@ describe "Array::heapq::public =>" do
   end
 
   context "Max-heap =>" do
+    #ENQUEUE
+    it "#heapq_max_enqueue(): enqueue's an object at the end of the array + returns its index" do
+      arr = [6, 5, 4, 3, 2, 1]
+      expect(arr.heapq_max_enqueue 0).to eql(6)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
+    end
+    it "#heapq_max_enqueue(): enqueue's an object and places it in the heap + returns its index" do
+      arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
+      expect(arr.heapq_max_enqueue 9).to eql(4)
+      expect(arr).to eql(12, 10, 8, 9, 4, 2, 0, 6)
+    end
+    it "#heapq_max_enqueue(): does nothing if the value is already in the heap + returns its index" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_enqueue 4).to eql(2)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
+    end
+    it "#heapq_max_enqueue(): places the object at the top of the heap if it's the largest" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_enqueue 7).to eql(0)
+      expect(arr).to eql([7, 6, 4, 5, 2, 1, 0, 3])
+    end
+    it "#heapq_max_enqueue(): does nothing if the object is nil + returns nil" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_enqueue nil).to eql(nil)
+      expect(arr).to eql([6, 5, 4, 3, 2, 1, 0])
+    end
 
+    #DEQUE
+    it "#heapq_max_deque(): deletes/returns the largest element + heapifies" do
+      arr = [6, 5, 4, 3, 2, 1, 0]
+      expect(arr.heapq_max_deque).to eql(6)
+      expect(arr).to eql([5, 3, 4, 0, 2, 1])
+    end
+    it "#heapq_max_deque(): deletes/returns the only object if heap size == 1" do
+      arr = [6]
+      expect(arr.heapq_max_deque).to eql(6)
+      expect(arr).to eql([])
+    end
+    it "#heapq_max_deque(): does nothing + returns nil if the heap is empty" do
+      arr = []
+      expect(arr.heapq_max_deque).to eql(nil)
+      expect(arr).to eql([])
+    end
+    #HEAPIFY (SAFE)
+
+    #HEAPIFY (UNSAFE)
+
+    #UPDATE
+    it "#heapq_max_update(): updates the existing value and does nothing if it fits + returns the index" do
+      arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
+      expect(arr.heapq_max_update 4, 3).to eql(4)
+      expect(arr).to eql([12, 10, 8, 6, 3, 2, 0])
+    end
+    it "#heapq_max_update(): updates the existing value and sinks it if needed + returns the index" do
+      arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
+      expect(arr.heapq_max_update 8, 1).to eql(5)
+      expect(arr).to eql([12, 10, 2, 6, 4, 1, 0])
+    end
+    it "#heapq_max_update(): updates the existing value and bubbles it if needed + returns the index" do
+      arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
+      expect(arr.heapq_max_update 2, 14).to eql(0)
+      expect(arr).to eql([14, 10, 12, 6, 4, 8, 0])
+    end
+    it "#heapq_max_update(): does nothing + returns nil if the old value is not found" do
+      arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
+      expect(arr.heapq_max_update 3, 11).to eql(nil)
+      expect(arr).to eql([12, 10, 8, 6, 4, 2, 0])
+    end
+    it "#heapq_max_update(): returns the existing index of the new value if it is already in the heap" do
+      arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
+      expect(arr.heapq_max_update 2, 10).to eql(1)
+      expect(arr).to eql([12, 10, 8, 6, 4, 2, 0])
+    end
+    it "#heapq_max_update(): returns nil and does nothing if either argument is nil" do
+      arr = [6, 5, 4, 3, 2, 1, 0].map { |n| n * 2 }
+      expect(arr.heapq_max_update nil, 3).to eql(nil)
+      expect(arr.heapq_max_update 4, nil).to eql(nil)
+      expect(arr.heapq_max_update nil, nil).to eql(nil)
+      expect(arr).to eql([12, 10, 8, 6, 4, 2, 0])
+    end
   end
 
   context "General =>" do
