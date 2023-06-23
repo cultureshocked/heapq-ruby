@@ -1,8 +1,7 @@
 class Array
   def heapq_min_heapify()
     return_array = self.uniq
-    for i in 0...return_array.length
-      next if i == 0
+    for i in 1...return_array.length
       return_array.heapq_min_bubble i
     end
     return_array
@@ -10,8 +9,7 @@ class Array
 
   def heapq_min_heapify!()
     self.uniq!
-    for i in 0...self.length
-      next if i == 0
+    for i in 1...self.length
       heapq_min_bubble i
     end
     self
@@ -52,11 +50,19 @@ class Array
   end
 
   def heapq_max_heapify()
-
+    return_array = self.uniq
+    for i in 1...return_array.length
+      return_array.heapq_max_bubble i
+    end
+    return_array
   end
 
   def heapq_max_heapify!()
-
+    self.uniq!
+    for i in 1...self.length
+      heapq_max_bubble i
+    end
+    self
   end
 
   def heapq_max_enqueue(n)
