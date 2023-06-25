@@ -2,7 +2,7 @@ class Array
   def heapq_min_heapify()
     return_array = self.uniq
     for i in 1...return_array.length
-      return_array.heapq_min_bubble i
+      return_array.send("heapq_min_bubble", i)
     end
     return_array
   end
@@ -52,7 +52,7 @@ class Array
   def heapq_max_heapify()
     return_array = self.uniq
     for i in 1...return_array.length
-      return_array.heapq_max_bubble i
+      return_array.send("heapq_max_bubble", i)
     end
     return_array
   end
@@ -102,7 +102,8 @@ class Array
     self[0]
   end
 
-  # private #comment out while running tests
+  # Comment out this `private` when running tests, else all private methods will fail.
+  private
 
   def heapq_get_parent(n)
     return nil if n <= 0
@@ -186,4 +187,5 @@ class Array
     return arr[0] if arr.length == 1
     (self[arr[0]] > self[arr[1]]) ? arr[0] : arr[1]
   end
+
 end
