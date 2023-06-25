@@ -102,7 +102,7 @@ class Array
     self[0]
   end
 
-  private #comment out while running tests
+  # private #comment out while running tests
 
   def heapq_get_parent(n)
     return nil if n <= 0
